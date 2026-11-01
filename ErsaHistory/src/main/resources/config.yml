@@ -1,0 +1,62 @@
+# ErsaHistory configuration
+
+enabled: true
+
+# Server name (use this if you share a single database across multiple servers)
+server-name: "default"
+
+# ===== Database =====
+
+# Which database backend to use: "sqlite" or "postgresql"
+database-type: "sqlite"
+
+# SQLite: file name (created inside the plugin data folder)
+database-file: "history.sqlite"
+
+# PostgreSQL connection settings (used only when database-type is "postgresql")
+database-host: "localhost"
+database-port: 5432
+database-name: "ersa_history"
+database-user: "postgres"
+database-password: ""
+
+# Connection/socket timeout in seconds. Prevents the server from freezing
+# when the database is unreachable (queries fail fast instead of hanging).
+database-timeout-seconds: 10
+
+# How often (in seconds) to try to reconnect if the connection was lost.
+# 0 - disable automatic reconnection.
+reconnect-interval-seconds: 60
+
+# Extra JDBC connection properties, e.g. for PostgreSQL:
+#   database-properties:
+#     sslmode: "disable"
+database-properties: {}
+
+# Listen for the command from the ErsaAC config.
+# Don't forget to add "50:50 [history]" to punish.*.commands in the ErsaAC config.
+command-marker: "[history]"
+
+# Number of records to display per page
+entries-per-page: 15
+
+# Delete records older than N days (0 - disable)
+retention-days: 30
+
+# How often to run the cleanup (in minutes)
+retention-interval-minutes: 60
+
+# Message prefix
+prefix: "&8[&bErsaHistory&8]&r"
+
+messages:
+  header: "%prefix% &fPlayer history for &e%player% &7[&f%page% &7/ &f%maxPages%&7]"
+  entry: "&c> &b%check% &c| &b%vl% VLs &c| &b%timeago% &c| &7%verbose%"
+  no-violations: "%prefix% &7Player &f%player% &7has no records."
+  history-disabled: "%prefix% &cHistory is disabled in the config."
+  history-load-failure: "%prefix% &cHistory failed to load (check console)."
+  player-not-found: "%prefix% &cPlayer not found."
+  invalid-page: "%prefix% &cInvalid page."
+  cleared: "%prefix% &aHistory for player &f%player% &ahas been cleared (&f%count% &arecords)."
+  clear-usage: "%prefix% &7Usage: &f/ersa history clear <player>"
+  usage: "%prefix% &7Usage: &f/ersa history <player> [page]&7 or &f/ersa history clear <player>"

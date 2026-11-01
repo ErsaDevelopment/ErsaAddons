@@ -1,0 +1,12 @@
+name: ErsaHistory
+version: '${version}'
+
+main: dev.ersa.history.Main
+api-version: '1.18'
+load: POSTWORLD
+depend: [ErsaAC]
+description: Alert history for ErsaAC.
+
+permissions:
+  ersa.commands.history:
+    default: op
